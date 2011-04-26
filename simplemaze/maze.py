@@ -30,7 +30,8 @@ class Maze:
     with open(layout_fname, 'r') as layout_file:
       for line in layout_file:
         # grid.append([int(elem) for elem in list(line.strip())])
-        grid.append(list(line.strip()))
+        if line.strip():
+          grid.append(list(line.strip()))
     self.height = len(grid)
     self.width = len(grid[0])
     for row in xrange(len(grid)):
