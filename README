@@ -1,0 +1,10 @@
+- teachingtools - simple code for instructive use
+Little blocks of code that are used in simple examples.
+Teaching Python in our Software Carpentry class
+
+= Current tools
+* vector3d
+  as the name suggests, a simple three dimensional vector implementation
+* maze
+  simple maze to teach stacks, queues, sets and dictionaries
+
