@@ -1,13 +1,52 @@
 
+import sys
+
+class Node:
+  """
+  Location - details
+  """
+  def __init__(self, r, c, t):
+    self.row = r
+    self.col = c
+    self.type = t
+
+
 class Maze:
   """
   'Black box' used to hide details of graph used
   Exercise is to use queues and BFS to find shortest path to exit
+  
+  Assuming standard euclidean geometry and a flat maze
   """
   
   def __init__(self, layout_fname):
+    """
+    empty_spaces is implemented using a map of tuples to True
+    we could just use a set, but we might want to use the Node later
+    """
+    self.empty_spaces = {}
+    self.start = self.target = None
+    grid = []
     with open(layout_fname, 'r') as layout_file:
-      pass
+      for line in layout_file:
+        # grid.append([int(elem) for elem in list(line.strip())])
+        grid.append(list(line.strip()))
+    self.height = len(grid)
+    self.width = len(grid[0])
+    for row in xrange(len(grid)):
+      for col in xrange(len(grid[row])):
+        if grid[row][col] != '1':
+          self.empty_spaces[(row,col)] = True
+          if grid[row][col] == 's':
+            if self.start:
+              raise RuntimeError('More than one start location in maze')
+            self.start = (row, col)
+          elif grid[row][col] == 't':
+            if self.target:
+              raise RuntimeError('More than one target location in maze')
+            self.target = (row, col)
+    if not self.start or not self.target:
+      raise RuntimeError('Start and target location not in maze')
   
   def get_neighbors(self, node):
     pass
@@ -19,7 +58,7 @@ class Maze:
     pass
 
 def test_maze():
-  pass
+  m = Maze(sys.argv[1])
 
 if __name__ == '__main__':
   test_maze()

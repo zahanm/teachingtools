@@ -2,7 +2,7 @@
 Little blocks of code that are used in simple examples.
 Teaching Python in our {Software Carpentry}[http://software-carpentry.org] class
 
-= Current tools
+== Current tools
 * vector3d
   - as the name suggests, a simple three dimensional vector implementation
   - used to teach principles of OOP
