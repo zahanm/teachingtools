@@ -24,7 +24,7 @@ class Maze:
     empty_spaces is implemented using a map of tuples to True
     we could just use a set, but we might want to use the Node later
     """
-    self.empty_spaces = {}
+    self.empty_spaces = set()
     self.start = self.target = None
     grid = []
     with open(layout_fname, 'r') as layout_file:
@@ -36,7 +36,7 @@ class Maze:
     for row in xrange(len(grid)):
       for col in xrange(len(grid[row])):
         if grid[row][col] != '1':
-          self.empty_spaces[(row,col)] = True
+          self.empty_spaces.add((row,col))
           if grid[row][col] == 's':
             if self.start:
               raise RuntimeError('More than one start location in maze')
@@ -56,6 +56,22 @@ class Maze:
   
   def have_visited(self, node):
     pass
+  
+  def __str__(self):
+    grid = ''
+    for row in xrange(self.height):
+      for col in xrange(self.width):
+        if (row,col) in self.empty_spaces:
+          if (row,col) == self.start:
+            grid += 's'
+          elif (row,col) == self.target:
+            grid += 't'
+          else:
+            grid += '0'
+        else:
+          grid += '1'
+      grid += "\n"
+    return grid
 
 def test_maze():
   m = Maze(sys.argv[1])
