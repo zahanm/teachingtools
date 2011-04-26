@@ -1,6 +1,6 @@
 = teachingtools - simple code for instructive use
 Little blocks of code that are used in simple examples.
-Teaching Python in our {Software Carpentry}[http://softwarecarpentry.org] class
+Teaching Python in our {Software Carpentry}[http://software-carpentry.org] class
 
 = Current tools
 * vector3d
