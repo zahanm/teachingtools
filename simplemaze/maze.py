@@ -66,6 +66,12 @@ class Maze:
         neighbors.add((row,col+d))
     return neighbors
   
+  def get_start_node(self):
+    """
+    as the name suggests, returns the starting node
+    """
+    return self._start
+  
   def visit(self, row, col):
     """
     returns whether this node is the exit, and marks it as visited
