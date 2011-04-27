@@ -1,5 +1,5 @@
 
-import sys
+import sys, os
 
 class Node:
   """
@@ -21,8 +21,7 @@ class Maze:
   
   def __init__(self, layout_fname):
     """
-    empty_spaces is implemented using a map of tuples to True
-    we could just use a set, but we might want to use the Node later
+    empty_spaces is implemented using a set of tuples
     """
     self.empty_spaces = set()
     self.start = self.target = None
@@ -74,8 +73,18 @@ class Maze:
       grid += "\n"
     return grid
 
+def test_construction(maze, test_layout_fname):
+  with open(test_layout_fname, 'r') as layout_file:
+    assert str(maze).strip() == layout_file.read().strip()
+
 def test_maze():
-  m = Maze(sys.argv[1])
+  if len(sys.argv) == 2:
+    test_layout_fname = sys.argv[1]
+  else:
+    test_layout_fname = 'sample_input'
+  m = Maze(test_layout_fname)
+  test_construction(m, test_layout_fname)
+  print "Tests passed"
 
 if __name__ == '__main__':
   test_maze()
