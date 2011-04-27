@@ -19,18 +19,16 @@ class Maze:
   Assuming standard euclidean geometry and a flat maze
   """
   
-  def __init__(self, layout_fname):
+  def __init__(self, layout):
     """
     empty_spaces is implemented using a set of tuples
     """
     self.empty_spaces = set()
     self.start = self.target = None
     grid = []
-    with open(layout_fname, 'r') as layout_file:
-      for line in layout_file:
-        # grid.append([int(elem) for elem in list(line.strip())])
-        if line.strip():
-          grid.append(list(line.strip()))
+    for line in layout.split("\n"):
+      if line.strip():
+        grid.append(list(line.strip()))
     self.height = len(grid)
     self.width = len(grid[0])
     for row in xrange(len(grid)):
@@ -48,8 +46,17 @@ class Maze:
     if not self.start or not self.target:
       raise RuntimeError('Start and target location not in maze')
   
-  def get_neighbors(self, node):
-    pass
+  def get_neighbors(self, row, col):
+    """
+    @returns A set of all valid empty neighbour locations
+    """
+    neighbors = set()
+    for d in [-1,1]:
+      if row+d >= 0 and row+d < self.height and (row+d,col) in self.empty_spaces:
+        neighbors.add((row+d,col))
+      if col+d >= 0 and col+d < self.width and (row,col+d) in self.empty_spaces:
+        neighbors.add((row,col+d))
+    return neighbors
   
   def is_exit(self, node):
     pass
@@ -73,19 +80,6 @@ class Maze:
       grid += "\n"
     return grid
 
-def test_construction(maze, test_layout_fname):
-  with open(test_layout_fname, 'r') as layout_file:
-    assert str(maze).strip() == layout_file.read().strip()
-
-def test_maze():
-  if len(sys.argv) == 2:
-    test_layout_fname = sys.argv[1]
-  else:
-    test_layout_fname = 'sample_input'
-  m = Maze(test_layout_fname)
-  test_construction(m, test_layout_fname)
-  print "Tests passed"
-
 if __name__ == '__main__':
-  test_maze()
+  print("Do not call this module directly.\nTest using test_maze.py")
 
