@@ -1,4 +1,10 @@
 
+#
+# Simple Maze implementation, useful for teaching Python
+# Exercise is to use queues and BFS to find shortest path to exit
+# Zahan Malkani <zahanm at gmail.com>
+#
+
 import sys, os
 
 class Node:
@@ -14,8 +20,6 @@ class Node:
 class Maze:
   """
   'Black box' used to hide details of graph used
-  Exercise is to use queues and BFS to find shortest path to exit
-  
   Assuming standard euclidean geometry and a flat maze
   """
   
