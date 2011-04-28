@@ -7,16 +7,6 @@
 
 import sys, os, re
 
-class Node:
-  """
-  Location - details
-  """
-  def __init__(self, r, c, t):
-    self.row = r
-    self.col = c
-    self.type = t
-
-
 class Maze:
   """
   'Black box' used to hide details of graph used
