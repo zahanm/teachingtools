@@ -19,11 +19,13 @@ sample_layout = \
 
 def test_construction():
   if len(sys.argv) == 2:
-    with open(sys.argv[1], 'r') as test_layout_file:
-      test_layout = test_layout_file.read().strip()
+    parsed_info = Maze.parse_layout(sys.argv[1])
+    test_layout = parsed_info[0]
+    test_info = parsed_info[1]
   else:
     test_layout = sample_layout
-  m = Maze(test_layout)
+    test_info = None
+  m = Maze(test_layout, test_info)
   assert str(m).strip() == test_layout.strip()
 
 def test_neighbors():

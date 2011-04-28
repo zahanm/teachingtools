@@ -1,0 +1,13 @@
+== Format for the Maze input files
+As outlined below
+
+    <height>
+    <width>
+    <number_info>
+    ...
+    height lines, with width nodes
+    ...
+    num_info lines, with
+    <row> <col> <info_word>
+    ...
+

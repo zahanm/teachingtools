@@ -23,8 +23,10 @@ class Maze:
   Assuming standard euclidean geometry and a flat maze
   """
   
-  def __init__(self, layout):
+  def __init__(self, layout, info=None):
     """
+    take a single string containing the layout of the maze
+    also, could give some information to associate with nodes
     empty_spaces is implemented using a set of tuples
     """
     self._start = self._target = None
@@ -85,6 +87,9 @@ class Maze:
     """
     return (row, col) in self._visited
   
+  def show(self):
+    pass # TODO
+  
   def __str__(self):
     grid = ''
     for row in xrange(self._height):
@@ -100,6 +105,18 @@ class Maze:
           grid += '1'
       grid += "\n"
     return grid
+  
+  @staticmethod
+  def parse_layout(input_filename):
+    with open(input_filename, 'r') as layout_file:
+      height = int(layout_file.next().strip()) # = height
+      layout_file.next() # = width
+      n_info = layout_file.next() # = number of associated info pieces
+      layout = ""
+      for i in xrange(height):
+        layout += layout_file.next()
+      # TODO somehow read in dictionary
+    return (layout, None)
 
 if __name__ == '__main__':
   print("Do not call this module directly.")
