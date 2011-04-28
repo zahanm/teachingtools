@@ -31,7 +31,7 @@ def test_construction():
 def test_neighbors():
   m = Maze(sample_layout)
   ns = m.get_neighbors(1,1)
-  assert len(ns) == 2 # unituitive method for set size
+  assert len(ns) == 2 # unintuitive method for set size
   assert (1,2) in ns
   assert (0,1) in ns
   ns = m.get_neighbors(4,0)
@@ -44,8 +44,12 @@ def test_visiting():
   assert m.visit(3,5)
 
 def main():
+  """
+  Runs all tests. A preferable way to run them is with nosetests
+  """
   test_construction()
   test_neighbors()
+  test_visiting()
   print "Tests passed"
 
 if __name__ == '__main__':

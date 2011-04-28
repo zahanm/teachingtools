@@ -11,3 +11,6 @@ As outlined below
     <row> <col> <info_word>
     ...
 
+
+(Rows start numbered at 0 at the top and go down.)
+(Columns start numbered at 0 at the left and go right.)

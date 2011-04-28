@@ -5,7 +5,7 @@
 # Zahan Malkani <zahanm at gmail.com>
 #
 
-import sys, os
+import sys, os, re
 
 class Node:
   """
@@ -25,9 +25,15 @@ class Maze:
   
   def __init__(self, layout, info=None):
     """
-    take a single string containing the layout of the maze
-    also, could give some information to associate with nodes
-    empty_spaces is implemented using a set of tuples
+    Take a single string containing the layout of the maze.
+    Also, can optionally give a dictionary to associate information with nodes.
+    empty_spaces is implemented using a set of tuples.
+
+    In the layout: 
+    0 represents an empty space
+    1 represents a wall
+    s represents the start space
+    t represents the target space
     """
     self._start = self._target = None
     empty_spaces = set()
@@ -88,7 +94,7 @@ class Maze:
     return (row, col) in self._visited
   
   def show(self):
-    pass # TODO
+    print(str(self))
   
   def __str__(self):
     grid = ''
@@ -108,15 +114,25 @@ class Maze:
   
   @staticmethod
   def parse_layout(input_filename):
+    """
+    Give it the name of a file containing a Maze input in the specified format
+    It will return a tuple with the Maze for that layout and a possibly 'None'
+    info dictionary
+    """
     with open(input_filename, 'r') as layout_file:
       height = int(layout_file.next().strip()) # = height
       layout_file.next() # = width
-      n_info = layout_file.next() # = number of associated info pieces
+      n_info = int(layout_file.next().strip()) # = number of associated info pieces
       layout = ""
       for i in xrange(height):
         layout += layout_file.next()
-      # TODO somehow read in dictionary
-    return (layout, None)
+      # TODO redo using regex
+      info_dict = {}
+      for i in xrange(n_info):
+        line = layout_file.next()
+        info = line.split(None)
+        info_dict[(int(info[0]),int(info[1]))] = info[2]
+    return (Maze(layout), info_dict)
 
 if __name__ == '__main__':
   print("Do not call this module directly.")
