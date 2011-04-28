@@ -1,5 +1,16 @@
 == Format for the Maze input files
-As outlined below
+
+* Rows start numbered at 0 at the top and go down
+* Columns start numbered at 0 at the left and go right
+
+In the layout: 
+
+    0 represents an empty space
+    1 represents a wall
+    s represents the start space
+    t represents the target space
+
+And the syntax of the layout:
 
     <height>
     <width>
@@ -11,6 +22,3 @@ As outlined below
     <row> <col> <info_word>
     ...
 
-
-(Rows start numbered at 0 at the top and go down.)
-(Columns start numbered at 0 at the left and go right.)

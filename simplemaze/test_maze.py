@@ -25,7 +25,7 @@ def test_construction():
   else:
     test_layout = sample_layout
     test_info = None
-  m = Maze(test_layout, test_info)
+  m = Maze(test_layout)
   assert str(m).strip() == test_layout.strip()
 
 def test_neighbors():
